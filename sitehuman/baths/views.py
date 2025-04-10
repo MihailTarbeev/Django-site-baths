@@ -1,12 +1,20 @@
-from django.http import HttpResponse, HttpResponseNotFound, Http404
+from django.http import HttpResponse, HttpResponseNotFound, Http404, HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
+from django.urls import reverse
 
 
 # Create your views here.
 
 
 def index(request):
-    return HttpResponse('Hi!')
+    # t = render_to_string('baths/index.html')
+    # return HttpResponse(t)
+    return render(request, 'baths/index.html')
+
+
+def staff(request):
+    return render(request, 'baths/staff.html')
 
 
 def categories(request, cat_id):
@@ -18,9 +26,10 @@ def categories_by_slug(request, cat_slug):
     return HttpResponse(f'<h1>Слаг: </h1> <p>{cat_slug}</p>')
 
 
-def page_year(reqest, year):
+def page_year(request, year):
     if year > 2025:
-        return redirect(index, permanent=True)
+        url = reverse('cat_slug', args=('music',))
+        return HttpResponsePermanentRedirect('/')
 
     return HttpResponse(f'<h3>Запрашиваемый год:{year}')
 
