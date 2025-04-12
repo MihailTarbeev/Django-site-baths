@@ -1,0 +1,43 @@
+##### Как передать данные в шаблон?
+На примере функции `render()`.
+В функцию `render(request, 'baths/index.html', data)` передаётся новый параметр data.
+Его можно передать по именованному аргументу context=data.
+data - это словарь, в котором ключ - переменная, доступная в шаблоне, значение - значение этой переменной.
+В самом шаблон мы в местах использования этого ключа пишем:
+`{{ title }}`.
+
+Пример шаблона:
+`<h1><a href="index.html">{{ title }}</a></h1>`
+
+Пример views:
+```
+def index(request):
+    # t = render_to_string('baths/index.html')
+    # return HttpResponse(t)
+    data = {'title': 'Бани'}
+    return render(request, 'baths/index.html', context=data)
+    ```
+
+##### Как обратиться к атрибуту объекта или к значению ключа внутри шаблона?
+Через точку.
+Например:
+в views:
+```
+data = {'title': 'Бани', 'menu': menu, 'dict': {'Баня1': 'на 20 человек'}, 'obj': MyClass()}
+return render(request, 'baths/index.html', context=data)
+```
+в шаблоне:
+```
+<p>{{ dict.Баня1}}</p>
+<p>{{ obj.a }}</p>
+```
+##### Зачем нужны фильтры в Django Templates? Как они в общем виде выглядят с переменной?
+Они нужны для обработки переменных, которые мы в них передаём.
+
+Ставится | и далее фильтр.
+Примеры: value|add:'21, value|cut:' '
+```
+<p>{{ float|add:'20' }}</p>
+```
+Думаю, главное знать, где его искать.
+https://docs.djangoproject.com/en/5.2/ref/templates/builtins/#add

@@ -3,18 +3,22 @@ from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse
 
-
+menu = ['Главная', 'Сотрудники']
 # Create your views here.
+class MyClass():
+    a = 'значение атрибута класса'
 
 
 def index(request):
     # t = render_to_string('baths/index.html')
     # return HttpResponse(t)
-    return render(request, 'baths/index.html')
+    data = {'title': 'Бани', 'float':30.0, 'menu': menu, 'dict': {'Баня1': 'на 20 человек'}, 'obj': MyClass()}
+    return render(request, 'baths/index.html', context=data)
 
 
 def staff(request):
-    return render(request, 'baths/staff.html')
+    return render(request, 'baths/staff.html', {'title': 'Сотрудники', 'menu': menu,
+                                                'dict': {'ban1': 'на 20 человек'}, 'obj': MyClass()})
 
 
 def categories(request, cat_id):
