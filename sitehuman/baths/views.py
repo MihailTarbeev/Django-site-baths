@@ -3,39 +3,47 @@ from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse
 
-menu = ['Главная', 'Сотрудники']
-# Create your views here.
-class MyClass():
-    a = 'значение атрибута класса'
+menu = [
+    {'title': 'Главная', 'url_name': 'home'},
+    {'title': 'О сайте', 'url_name': 'about'},
+    {'title': 'Добавить баню', 'url_name': 'add_bath'},
+    {'title': 'Обратная связь', 'url_name': 'contact'},
+    {'title': 'Войти', 'url_name': 'login'},
+]
+
+baths = [
+    {'id': 1, 'name': 'Банька Парилка', 'capacity': 20, 'open': False},
+    {'id': 2, 'name': 'Банька от Аньки', 'capacity': 100, 'open': True},
+    {'id': 3, 'name': 'Русская баня', 'capacity': 50, 'open': True}
+]
 
 
 def index(request):
     # t = render_to_string('baths/index.html')
     # return HttpResponse(t)
-    data = {'title': 'Бани', 'float':30.0, 'menu': menu, 'dict': {'Баня1': 'на 20 человек'}, 'obj': MyClass()}
+    data = {'title': 'Главная', 'menu': menu, 'baths': baths}
     return render(request, 'baths/index.html', context=data)
 
 
-def staff(request):
-    return render(request, 'baths/staff.html', {'title': 'Сотрудники', 'menu': menu,
-                                                'dict': {'ban1': 'на 20 человек'}, 'obj': MyClass()})
+def show_bath(request, bath_id):
+    return HttpResponse(f'<p>Банька с номером {bath_id}</p>')
 
 
-def categories(request, cat_id):
-    print(request.GET)
-    return HttpResponse(f'Категория {cat_id} <br>')
+def about(request):
+    data = {'title': 'О сайте', 'menu': menu}
+    return render(request, 'baths/about.html', context=data)
 
 
-def categories_by_slug(request, cat_slug):
-    return HttpResponse(f'<h1>Слаг: </h1> <p>{cat_slug}</p>')
+def add_bath(request):
+    return HttpResponse(f'<p>Добавление баньки</p>')
 
 
-def page_year(request, year):
-    if year > 2025:
-        url = reverse('cat_slug', args=('music',))
-        return HttpResponsePermanentRedirect('/')
+def contact(request):
+    return HttpResponse(f'<p>Обратная связь</p>')
 
-    return HttpResponse(f'<h3>Запрашиваемый год:{year}')
+
+def login(request):
+    return HttpResponse(f'<p>Авторизация</p>')
 
 
 def page_not_found(request, exception):
