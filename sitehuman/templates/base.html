@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,22 +9,28 @@
     <meta name="author" content="Devcrud">
     <title>{{ title }}</title>
     <!-- font icons -->
-    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="{% static 'baths/vendors/themify-icons/css/themify-icons.css' %}">
 
     <!-- Bootstrap + Dorang main styles -->
-	<link rel="stylesheet" href="assets/css/dorang.css">
+	<link rel="stylesheet" href="{% static 'baths/css/dorang.css' %}">
 
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home" class="dark-theme">
 
     <!-- page navbar -->
-    <nav class="page-navbar" data-spy="affix" data-offset-top="10">
-        <ul class="nav-navbar container">
-            {% for chapter in menu %}
-            <li class="nav-item"><a href="{% url chapter.url_name %}" class="nav-link">{{ chapter.title }}</a></li>
-            {% endfor %}
-        </ul>
-    </nav><!-- end of page navbar -->
+    {% include 'baths/includes/nav.html' %}
+
 {% block content %} {% endblock %}
+
+    <!-- core  -->
+    <script src="baths/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="baths/vendors/bootstrap/bootstrap.bundle.js"></script>
+
+    <!-- bootstrap affix -->
+    <script src="baths/vendors/bootstrap/bootstrap.affix.js"></script>
+
+    <!-- Dorang js -->
+    <script src="baths/js/dorang.js"></script>
+
 </body>
 </html>

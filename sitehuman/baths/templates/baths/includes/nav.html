@@ -1,0 +1,7 @@
+<nav class="page-navbar" data-spy="affix" data-offset-top="10">
+        <ul class="nav-navbar container">
+            {% for chapter in menu %}
+            <li class="nav-item"><a href="{% url chapter.url_name %}" class="nav-link">{{ chapter.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav><!-- end of page navbar -->
