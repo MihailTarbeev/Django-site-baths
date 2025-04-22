@@ -1,0 +1,14 @@
+{% load static %}
+{% for c in cats %}
+<div class="col-md-6">
+    <a href="{% url 'category' c.id %}" class="card">
+        <img src="{% static 'baths/imgs/blog-2.jpg' %}" class="card-img">
+        <div class="card-body">
+            <h6 class="card-subtitle">29 June, 2018</h6>
+            <h3 class="card-title">{{ c.name }}</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+    </a>
+</div>
+{% endfor %}

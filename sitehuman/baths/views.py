@@ -58,6 +58,11 @@ baths = [
                                                 ' без предоставления отдельного спального места)', 'open': True}
 ]
 
+cats_db = [
+    {'id': 1, 'name': 'Русская'},
+    {'id': 2, 'name': 'Турецкая'},
+    {'id': 3, 'name': 'Египетская'},
+]
 
 def index(request):
     # t = render_to_string('baths/index.html')
@@ -85,6 +90,10 @@ def contact(request):
 
 def login(request):
     return HttpResponse(f'<p>Авторизация</p>')
+
+
+def show_category(request, cat_id):
+    return index(request)
 
 
 def page_not_found(request, exception):
