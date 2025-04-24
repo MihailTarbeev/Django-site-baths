@@ -64,10 +64,11 @@ cats_db = [
     {'id': 3, 'name': 'Египетская'},
 ]
 
-def index(request):
+
+def index(request, cat_id=None):
     # t = render_to_string('baths/index.html')
     # return HttpResponse(t)
-    data = {'title': 'Главная', 'menu': menu, 'baths': baths}
+    data = {'title': 'Главная', 'menu': menu, 'baths': baths, 'cat_id': cat_id}
     return render(request, 'baths/index.html', context=data)
 
 
@@ -93,7 +94,7 @@ def login(request):
 
 
 def show_category(request, cat_id):
-    return index(request)
+    return index(request, {"cat_id": cat_id})
 
 
 def page_not_found(request, exception):

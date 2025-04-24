@@ -1,13 +1,18 @@
 {% load static %}
-{% for c in cats %}
-<div class="col-md-6">
-    <a href="{% url 'category' c.id %}" class="card">
+{% for cat in cats %}
+<div class="col-md-3">
+    
+    <a href="{% url 'category' cat.id %}" class="card">
         <img src="{% static 'baths/imgs/blog-2.jpg' %}" class="card-img">
         <div class="card-body">
             <h6 class="card-subtitle">29 June, 2018</h6>
-            <h3 class="card-title">{{ c.name }}</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua.</p>
+            {% if cat_selected.cat_id == cat.id %}
+            <h3 class="selected" style="color:red" >{{ cat.name }}</h3>
+            {% else %}
+            <h3 class="selected">{{ cat.name }}</h3>
+
+            {% endif %}
+            <p>Банька</p>
         </div>
     </a>
 </div>

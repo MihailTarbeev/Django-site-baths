@@ -4,103 +4,108 @@
 
 
 {% block content %}
-    <div class="theme-selector">
-        <a href="javascript:void(0)" class="spinner">
-            <i class="ti-paint-bucket"></i>
-        </a>
-        <div class="body">
-            <a href="javascript:void(0)" class="light"></a>
-            <a href="javascript:void(0)" class="dark"></a>
-        </div>
+<div class="theme-selector">
+    <a href="javascript:void(0)" class="spinner">
+        <i class="ti-paint-bucket"></i>
+    </a>
+    <div class="body">
+        <a href="javascript:void(0)" class="light"></a>
+        <a href="javascript:void(0)" class="dark"></a>
     </div>
+</div>
 
-    <!-- page header -->
-    <header class="header">
-        <div class="overlay"></div>
-        <div class="header-content">
-            <h1 class="header-title">What Happens Tomorrow? <br> {% get_categories %}</h1>
-            <p class="header-subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt.</p>
+<!-- page header -->
+<header class="header">
+    <div class="overlay"></div>
+    <div class="header-content">
+        <h1 class="header-title">Заходи, если не паришься!</h1>
+        <p class="header-subtitle">Веник — хлёсткий, чай — душистый</p>
 
-            <button class="btn btn-theme-color modal-toggle"><i class="ti-control-play text-danger"></i> Watch Video</button>
+        <button class="btn btn-theme-color modal-toggle"><i class="ti-control-play text-danger"></i> Watch Video
+        </button>
 
-        </div>
-    </header><!-- end of page header -->
+    </div>
+</header><!-- end of page header -->
 
-    <!-- modal -->
-    <div class="modalBox">
-        <div class="modalBox-body">
-            <iframe width="100%" height="450px" class="border-0"
-            src="https://www.youtube.com/embed/tgbNyZ7vqY?controls=0">
-            </iframe>
-        </div>
-    </div><!-- end of modal -->
+<!-- modal -->
+<div class="modalBox">
+    <div class="modalBox-body">
+        <iframe width="100%" height="450px" class="border-0"
+                src="https://www.youtube.com/embed/tgbNyZ7vqY?controls=0">
+        </iframe>
+    </div>
+</div><!-- end of modal -->
 
-    <!-- page container -->
-    <div class="container page-container">
-        <div class="col-md-10 col-lg-8 m-auto">
-            <h6 class="title mb-4">Explore The World</h6>
-            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+<!-- page container -->
+<div class="container page-container">
+    <div class="col-md-10 col-lg-8 m-auto">
+        <h6 class="title mb-4">Explore The World</h6>
+        <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
             quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
             consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>
-        </div>
-
-        <!-- row -->
-        <div class="row mb-4">
-
-            {% for b in baths %}
-            {% include 'baths/includes/type_bath.html' with b=b %}
-            {% endfor %}
-
-        </div><!-- end of row -->
-
-        <a href="#">Load More <i class="ti-angle-double-right angle"></i></a>
+    </div>
 
 
+    <div class="col-md-10 col-lg-8 m-auto">
+        <h6 class="title mb-4 mt-5 pt-5">Наши категории</h6>
+        <p class="mb-5"></p>
+    </div>
+
+    <!-- row -->
+    <div class="row mb-5">
+        {% show_categories cat_id %}
+    </div><!-- end of row -->
+
+
+    <!-- row -->
+    <div class="row mb-4">
+
+        {% for b in baths %}
+        {% include 'baths/includes/type_bath.html' with b=b %}
+        {% endfor %}
+
+    </div><!-- end of row -->
+
+    <a href="#">Load More <i class="ti-angle-double-right angle"></i></a>
+
+
+    <a href="#">All Posts <i class="ti-angle-double-right angle"></i></a>
+
+</div> <!-- end of page container -->
+
+<!--footer & pre footer -->
+<div class="contact-section">
+    <div class="overlay"></div>
+    <!-- container -->
+    <div class="container">
         <div class="col-md-10 col-lg-8 m-auto">
-            <h6 class="title mb-4 mt-5 pt-5">The Journal</h6>
-            <p class="mb-5">{% get_categories as cat %}</p>
+            <h6 class="title mb-2">Contact Us</h6>
+            <p class="mb-5">Feel Free To Drop Us A Line.</p>
+            <form action="" class="form-group">
+                <input type="text" size="50" class="form-control" placeholder="Your Name" required>
+                <input type="email" class="form-control" placeholder="Enter Email" requried>
+                <textarea name="comment" id="comment" rows="6" class="form-control"
+                          placeholder="Write Something"></textarea>
+                <input type="submit" value="Send Message" class="form-control">
+            </form>
         </div>
 
-        <!-- row -->
-        <div class="row mb-5">
-            {%  show_categories %}
-        </div><!-- end of row -->
-
-        <a href="#">All Posts <i class="ti-angle-double-right angle"></i></a>
-
-    </div> <!-- end of page container -->
-
-    <!--footer & pre footer -->
-    <div class="contact-section">
-        <div class="overlay"></div>
-        <!-- container -->
-        <div class="container">
-            <div class="col-md-10 col-lg-8 m-auto">
-                <h6 class="title mb-2">Contact Us</h6>
-                <p class="mb-5">Feel Free To Drop Us A Line.</p>
-                <form action="" class="form-group">
-                    <input type="text" size="50" class="form-control" placeholder="Your Name" required>
-                    <input type="email" class="form-control" placeholder="Enter Email"requried>
-                    <textarea name="comment" id="comment" rows="6"   class="form-control" placeholder="Write Something"></textarea>
-                    <input type="submit" value="Send Message" class="form-control">
-                </form>
+        <!-- footer -->
+        <footer class="footer">
+            <p class="infos">&copy;
+                <script>document.write(new Date().getFullYear())</script>
+                , Made with <i class="ti-heart text-danger"></i> by <a href="http://www.devcrud.com">DevCRUD</a></p>
+            <span>|</span>
+            <div class="links">
+                <a href="#">About</a>
+                <a href="#">Explore</a>
+                <a href="#">Journal</a>
             </div>
+        </footer><!-- end of footer -->
 
-            <!-- footer -->
-            <footer class="footer">
-                <p class="infos">&copy; <script>document.write(new Date().getFullYear())</script>, Made with <i class="ti-heart text-danger"></i> by <a href="http://www.devcrud.com">DevCRUD</a></p>
-                <span>|</span>
-                <div class="links">
-                    <a href="#">About</a>
-                    <a href="#">Explore</a>
-                    <a href="#">Journal</a>
-                </div>
-            </footer><!-- end of footer -->
-
-        </div><!-- end of container -->
-    </div><!-- end of pre footer -->
+    </div><!-- end of container -->
+</div><!-- end of pre footer -->
 
 
 {% endblock %}
